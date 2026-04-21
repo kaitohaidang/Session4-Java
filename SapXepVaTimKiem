@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class SapXepMangGiamDan {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+
+        System.out.println("Nhap So Luong Phan Tu Cua Mang ");
+        int n= sc.nextInt();
+        System.out.println("Nhap cac phan tu cua mang");
+        int[] a= new int[n];
+        for (int i=0;i<n;i++) {
+            System.out.println("Phan tu thu " +(i+1));
+            a[i]= sc.nextInt();
+        }
+       for (int i=0;i<n-1;i++) {
+           int max=i;
+           for(int j=i+1;j<n;j++) {
+               if (a[j]>a[max])
+                   max=j;
+           }
+           int temp=a[i];
+           a[i]=a[max];
+           a[max]=temp;
+       }
+
+        System.out.println("Mang sau khi sap xem giam gian");
+       for (int i =0;i<n;i++) {
+           System.out.println(a[i]+" ");
+       }
+        System.out.println("Nhap So Can Tim ");
+       int m=sc.nextInt();
+       for (int i=0;i<n;i++) {
+           if (a[i]==m){
+               System.out.println("Tim Kiem Tuyen Tinh: So "+m+" Co tai vi tri "+i);
+               break;
+           }
+       }
+
+        int pos=-1;
+        int left =0;
+        int right=a.length-1;
+        while(left<=right) {
+            int mid =(left+right)/2;
+            if (a[mid]==m) {
+                pos=mid;
+                break;
+            }
+            else if(a[mid]<m){
+                right=mid-1;
+            }
+            else left=mid+1;
+        };
+        System.out.println("Tim kiem nhi phan so "+m+" co tai vi tri "+pos);
+    }
+}
